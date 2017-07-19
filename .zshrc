@@ -56,6 +56,45 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+# 色々拝借した: https://suin.io/568
+: "キーバインディング" && {
+  bindkey -e # emacs キーマップを選択
+  : "Ctrl-Yで上のディレクトリに移動できる" && {
+    function cd-up { zle push-line && LBUFFER='builtin cd ..' && zle accept-line }
+    zle -N cd-up
+    bindkey "^Y" cd-up
+  }
+  : "Ctrl-Dでシェルからログアウトしない" && {
+    setopt ignoreeof
+  }
+  : "Ctrl-Wでパスの文字列などをスラッシュ単位でdeleteできる" && {
+    autoload -U select-word-style
+    select-word-style bash
+  }
+  : "Ctrl-[で直前コマンドの単語を挿入できる" && {
+    autoload -Uz smart-insert-last-word
+    zstyle :insert-last-word match '*([[:alpha:]/\\]?|?[[:alpha:]/\\])*' # [a-zA-Z], /, \ のうち少なくとも1文字を含む長さ2以上の単語
+    zle -N insert-last-word smart-insert-last-word
+    bindkey '^[' insert-last-word
+    # see http://qiita.com/mollifier/items/1a9126b2200bcbaf515f
+  }
+}
+
+: "略語展開(iab)" && {
+  alias h="history"
+  alias l="ls -laG" # G: macOSで色を付ける
+  alias la="ls -lahG"
+  alias l1="ls -1G"
+  alias tree="tree -NC" # N: 文字化け対策, C:色をつける
+  alias gf="git diff"
+  alias gfc="git diff --cached"
+  alias gs="git status -s"
+}
+
+: "cd先のディレクトリのファイル一覧を表示する" && {
+  [ -z "$ENHANCD_ROOT" ] && function chpwd { tree -L 1 } # enhancdがない場合
+  [ -z "$ENHANCD_ROOT" ] || export ENHANCD_HOOK_AFTER_CD="tree -L 1" # enhancdがあるときはそのHook機構を使う
+}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

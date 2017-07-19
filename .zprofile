@@ -6,6 +6,12 @@ if [ -d "${PYENV_ROOT}" ]; then
   eval "$(pyenv init -)"
 fi
 
+cdpath=(
+  $HOME(N-/)
+  $HOME/Documents(N-/)
+  $cdpath
+)
+
 # for tmux
 # 自動でデタッチされたセッションがないかを確認してあればアタッチする
 # http://qiita.com/b4b4r07/items/01359e8a3066d1c37edc
