@@ -85,4 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim=nvim
-alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+
+# 自動でデタッチされたセッションがないかを確認してあればアタッチする
+tmux_automatically_attach_session
