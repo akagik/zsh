@@ -209,3 +209,16 @@ fi
 
 # 自動でデタッチされたセッションがないかを確認してあればアタッチする
 tmux_automatically_attach_session
+
+# OS ごとの設定
+case ${OSTYPE} in
+    darwin*)
+        ;;
+    cygwin*)
+        alias cdd="cd /cygdrive/c/Users/kohei/Documents/"
+        alias cdw="cd /cygdrive/c/Users/kohei/Documents/Sohatsu/"
+        alias cdh="cd /cygdrive/c/Users/kohei/"
+        ;;
+    linux*)
+        ;;
+esac
