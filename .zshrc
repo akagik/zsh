@@ -237,3 +237,13 @@ function peco-select-gitadd() {
 }
 zle -N peco-select-gitadd
 bindkey "^g^a" peco-select-gitadd
+
+# for history command
+function peco-history-selection() {
+    BUFFER=`history | tail -r | awk '{$1=""; sub(/^[ \t]+/, ""); print $0}' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^S' peco-history-selection
