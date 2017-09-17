@@ -10,6 +10,12 @@ git clone https://github.com/akagik/zsh.git zsh
 export ZDOTDIR=$HOME/.config/zsh
 ```
 
+# Requirement
+oh-my-zsh のダウンロード
+```bash
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
 # Requirement for Mac
 tree のインストール.
 ```bash
@@ -52,3 +58,8 @@ make
 make install
 ```
 
+# 注意
+一部の環境で .zshrc の tail -r が動かないので tac に変更する.
+
+# TODO
+tmux がインストールされてないときの対応
