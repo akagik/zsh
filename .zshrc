@@ -130,6 +130,9 @@ cdpath=(
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# for node.js
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -247,3 +250,7 @@ function peco-history-selection() {
 
 zle -N peco-history-selection
 bindkey '^S' peco-history-selection
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/kohei/.sdkman"
+[[ -s "/Users/kohei/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kohei/.sdkman/bin/sdkman-init.sh"
