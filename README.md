@@ -10,6 +10,11 @@ git clone https://github.com/akagik/zsh.git zsh
 export ZDOTDIR=$HOME/.config/zsh
 ```
 
+# Requirement
+* tmux
+* nodejs
+* sdkman
+
 # Requirement for Mac
 tree のインストール.
 ```bash
