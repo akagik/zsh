@@ -71,6 +71,9 @@ cdpath=(
   $cdpath
 )
 
+if [ -d "${HOME}/bin" ]; then
+    export PATH=${HOME}/bin:$PATH
+fi
 
 # 色々拝借した: https://suin.io/568
 : "キーバインディング" && {
@@ -131,7 +134,9 @@ cdpath=(
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # for node.js
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+if [ -d "${HOME}/.nodebrew" ]; then
+    export PATH=$HOME/.nodebrew/current/bin:$PATH
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -170,7 +175,7 @@ function tmux_automatically_attach_session()
     else
         if shell_has_started_interactively && ! is_ssh_running; then
             if ! is_exists 'tmux'; then
-                echo 'Error: tmux command not found' 2>&1
+#                 echo 'Error: tmux command not found' 2>&1
                 return 1
             fi
 
@@ -252,5 +257,5 @@ zle -N peco-history-selection
 bindkey '^S' peco-history-selection
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/kohei/.sdkman"
-[[ -s "/Users/kohei/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kohei/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/Users/kohei/.sdkman"
+# [[ -s "/Users/kohei/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kohei/.sdkman/bin/sdkman-init.sh"
