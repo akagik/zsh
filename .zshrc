@@ -60,11 +60,11 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # 環境変数とかの設定
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-  export PATH=${PYENV_ROOT}/bin:$PATH
-  eval "$(pyenv init -)"
-fi
+#export PYENV_ROOT="${HOME}/.pyenv"
+#if [ -d "${PYENV_ROOT}" ]; then
+#  export PATH=${PYENV_ROOT}/bin:$PATH
+#  eval "$(pyenv init -)"
+#fi
 
 # less コマンドの文字コードを utf-8 にする
 export LESSCHARSET=utf-8
