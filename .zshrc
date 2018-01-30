@@ -110,16 +110,11 @@ setopt globdots # 明確なドットの指定なしで.から始まるファイ�
   alias l="ls -laG" # G: macOSで色を付ける
   alias la="ls -lahG"
   alias l1="ls -1G"
-  alias tree="tree -NC" # N: 文字化け対策, C:色をつける
   alias gf="git diff"
   alias gfc="git diff --cached"
   alias gs="git status -s"
 }
 
-: "cd先のディレクトリのファイル一覧を表示する" && {
-  [ -z "$ENHANCD_ROOT" ] && function chpwd { tree -L 1 } # enhancdがない場合
-  [ -z "$ENHANCD_ROOT" ] || export ENHANCD_HOOK_AFTER_CD="tree -L 1" # enhancdがあるときはそのHook機構を使う
-}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -219,6 +214,17 @@ function tmux_automatically_attach_session()
 
 if is_exists 'nvim'; then
     alias vim=nvim
+fi
+
+if is_exists 'tree'; then
+  alias tree="tree -NC" # N: 文字化け対策, C:色をつける
+
+  : "cd先のディレクトリのファイル一覧を表示する" && {
+    [ -z "$ENHANCD_ROOT" ] && function chpwd { tree -L 1 } # enhancdがない場合
+    [ -z "$ENHANCD_ROOT" ] || export ENHANCD_HOOK_AFTER_CD="tree -L 1" # enhancdがあるときはそのHook機構を使う
+  }
+else
+  function chpwd {}
 fi
 
 # 自動でデタッチされたセッションがないかを確認してあればアタッチする
