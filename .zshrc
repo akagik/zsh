@@ -197,6 +197,8 @@ function tmux_automatically_attach_session()
                         echo "$(tmux -V) attached session"
                         return 0
                     fi
+                elif [[ "$REPLY" =~ ^[Nn]$ ]]; then
+                    return 0
                 fi
             fi
 
