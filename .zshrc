@@ -79,6 +79,10 @@ if [ -d "${HOME}/bin" ]; then
     export PATH=${HOME}/bin:$PATH
 fi
 
+if [ -d "${HOME}/pyutils" ]; then
+    export PATH=${HOME}/pyutils:$PATH
+fi
+
 setopt globdots # 明確なドットの指定なしで.から始まるファイルをマッチ
 
 # 色々拝借した: https://suin.io/568
