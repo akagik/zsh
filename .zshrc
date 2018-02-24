@@ -271,7 +271,19 @@ bindkey "^g^a" peco-select-gitadd
 
 # for history command
 function peco-history-selection() {
-    BUFFER=`history | tail -r | awk '{$1=""; sub(/^[ \t]+/, ""); print $0}' | peco`
+    if is_exists 'tac'; then
+        if is_exists 'fzf'; then
+            BUFFER=`history | tac -r | awk '{$1=""; sub(/^[ \t]+/, ""); print $0}'| fzf`
+        else
+            BUFFER=`history | tac -r | awk '{$1=""; sub(/^[ \t]+/, ""); print $0}'| peco`
+        fi
+    else
+        if is_exists 'fzf'; then
+            BUFFER=`history | tail -r | awk '{$1=""; sub(/^[ \t]+/, ""); print $0}'| fzf`
+        else
+            BUFFER=`history | tail -r | awk '{$1=""; sub(/^[ \t]+/, ""); print $0}'| peco`
+        fi
+    fi
     CURSOR=$#BUFFER
     zle reset-prompt
 }
