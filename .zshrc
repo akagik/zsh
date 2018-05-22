@@ -58,6 +58,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
+platform=`uname`
 
 # 環境変数とかの設定
 #export PYENV_ROOT="${HOME}/.pyenv"
@@ -294,3 +295,7 @@ bindkey '^S' peco-history-selection
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="/Users/kohei/.sdkman"
 # [[ -s "/Users/kohei/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kohei/.sdkman/bin/sdkman-init.sh"
+
+if [[ $platform == 'Darwin' ]]; then
+    export PATH=$PATH:/Users/kohei/Library/Android/sdk/platform-tools
+fi
