@@ -294,12 +294,39 @@ bindkey '^S' peco-history-selection
 
 
 # fzf
+
 # https://github.com/junegunn/fzf
 if is_exists 'fzf'; then
+    # CTRL-O - Paste the selected directory path(s) into the command line
+    __fdir() {
+      local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+        -o -type f -print \
+        -o -type d -print \
+        -o -type l -print 2> /dev/null | cut -b3-"}"
+      setopt localoptions pipefail 2> /dev/null
+      eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+        echo -n "${(q)item} "
+      done
+      local ret=$?
+      echo
+      return $ret
+    }
+
     if is_exists 'fd'; then
+        # for history command
+        function fzf-dir-widget() {
+            LBUFFER="${LBUFFER}$(__fdir)"
+            local ret=$?
+            zle reset-prompt
+            return $ret
+        }
+        zle -N fzf-dir-widget
+
         export FZF_DEFAULT_COMMAND='fd --type f'
         export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         export FZF_ALT_C_COMMAND='fd --type d'
+
+        bindkey '^O' fzf-dir-widget
     fi
 
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
