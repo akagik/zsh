@@ -292,6 +292,18 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^S' peco-history-selection
 
+
+# fzf
+# https://github.com/junegunn/fzf
+if is_exists 'fzf'; then
+    if is_exists 'fd'; then
+        export FZF_DEFAULT_COMMAND='fd --type f'
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    fi
+
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="/Users/kohei/.sdkman"
 # [[ -s "/Users/kohei/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kohei/.sdkman/bin/sdkman-init.sh"
@@ -299,3 +311,8 @@ bindkey '^S' peco-history-selection
 if [[ $platform == 'Darwin' ]]; then
     export PATH=$PATH:/Users/kohei/Library/Android/sdk/platform-tools
 fi
+
+# export GOROOT="go env GOROOT" or "/usr/local/opt/go/libexec"
+export GOPATH=$HOME/go
+# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
