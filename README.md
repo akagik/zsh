@@ -1,4 +1,4 @@
-# Install
+## Install
 このレポジトリを ~/.config/zsh にクローンする.
 ```bash
 cd ~/.config
@@ -10,23 +10,30 @@ git clone https://github.com/akagik/zsh.git zsh
 export ZDOTDIR=$HOME/.config/zsh
 ```
 
-# Requirement
+## Requirement
 * tmux
 * nodejs
 * sdkman
+* git-open
 
 oh-my-zsh のダウンロード
 ```bash
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
-# Requirement for Mac
+git-open は oh-my-zsh の plugins で管理
+```
+git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
+```
+
+
+### Requirement for Mac
 tree のインストール.
 ```bash
 brew install tree
 ```
 
-# Requirement for cygwin
+### Requirement for cygwin
 tree が上手くうごかないのでコンパイルする.
 参考: http://qiita.com/tenten0213/items/8087d86a7735117a5238
 
@@ -62,8 +69,8 @@ make
 make install
 ```
 
-# 注意
+## 注意
 一部の環境で .zshrc の tail -r が動かないので tac に変更する.
 
-# TODO
+## TODO
 tmux がインストールされてないときの対応
