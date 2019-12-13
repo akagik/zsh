@@ -12,6 +12,7 @@ export ZDOTDIR=$HOME/.config/zsh
 
 ## Requirement
 * tmux
+* fzf
 * nodejs
 * sdkman
 * git-open
