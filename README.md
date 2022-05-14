@@ -28,6 +28,14 @@ git-open は oh-my-zsh の plugins で管理
 git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 ```
 
+https://code-graffiti.com/how-to-install-node-js-on-mac-with-homebrew/
+```
+brew install nodebrew
+mkdir -p ~/.nodebrew/src
+nodebrew install-binary stable 
+nodebrew use {installed-version}
+```
+
 
 ### Requirement for Mac
 tree のインストール.
